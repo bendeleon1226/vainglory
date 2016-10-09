@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>VainGlory Heroes</title>
+<title>Add/View VainGlory Heroes</title>
 </head>
 <body>
 <% 

@@ -6,6 +6,7 @@
 <body>
 <h3>Welcome to Vain Glory Statistics!</h3>
 <br>
-<a href="AddViewHero.do">Add/View Hero</a>
+<a href="AddViewHero.do">Add/View Hero</a><br/>
+<a href="AddViewGameHistory.do">Add/View Game History</a>
 </body>
 </html>
