@@ -11,6 +11,11 @@
 	<servlet-class>com.vainglory.web.AddViewGameHistory</servlet-class>
 </servlet>
 
+<servlet>
+	<servlet-name>Add View Adagio Game History</servlet-name>
+	<servlet-class>com.vainglory.web.AddViewAdagioGameHistory</servlet-class>
+</servlet>
+
 <servlet-mapping>
 	<servlet-name>Add View Hero</servlet-name>
 	<url-pattern>/AddViewHero.do</url-pattern>
@@ -19,6 +24,11 @@
 <servlet-mapping>
 	<servlet-name>Add View Game History</servlet-name>
 	<url-pattern>/AddViewGameHistory.do</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>Add View Adagio Game History</servlet-name>
+	<url-pattern>/AddViewAdagioGameHistory.do</url-pattern>
 </servlet-mapping>
 
 <resource-ref>

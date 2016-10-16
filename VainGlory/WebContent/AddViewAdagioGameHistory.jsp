@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Add/View VainGlory Game History for Ardan</title>
+<title>Add/View VainGlory Game History for Adagio</title>
 </head>
 <body>
 <% 
@@ -14,7 +14,7 @@ List<Hero> heroesList = (List<Hero>)request.getAttribute("heroesList");
 <a href="/VainGlory">VainGlory Home</a>
 <br/>
 <br/>
-<form method="POST" action="AddViewGameHistory.do">
+<form method="POST" action="AddViewAdagioGameHistory.do">
 <input type="radio" name="isVictory" value="Y" checked> Victory &nbsp;
 <input type="radio" name="isVictory" value="N"> Defeat <br/>
 <table>

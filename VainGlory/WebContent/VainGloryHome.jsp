@@ -7,6 +7,7 @@
 <h3>Welcome to Vain Glory Statistics!</h3>
 <br>
 <a href="AddViewHero.do">Add/View Hero</a><br/>
-<a href="AddViewGameHistory.do">Add/View Game History</a>
+<a href="AddViewGameHistory.do">Add/View Ardan Game History</a><br/>
+<a href="AddViewAdagioGameHistory.do">Add/View Adagio Game History</a>
 </body>
 </html>
