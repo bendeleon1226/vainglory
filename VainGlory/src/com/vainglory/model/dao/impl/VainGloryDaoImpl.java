@@ -205,4 +205,64 @@ public class VainGloryDaoImpl implements VainGloryDao {
 		  }
 		return gameHistoryStats;
 	}
+
+	@Override
+	public void addCatherineGameHistory(String isVictory, long ally1, long ally2, long enemy1, long enemy2,
+			long enemy3) {
+		Connection conn = null;
+		try
+        {
+			DBConnection db = new DBConnection();
+			conn = db.getConnection();
+			
+			String sql = "INSERT INTO CATHERINE_GAME_HISTORY(CATHERINE_VICTORY_HISTORY_ID, ally1_hero_id, ally2_hero_id, enemy1_hero_id, enemy2_hero_id, enemy3_hero_id, is_victory) "
+					+ "VALUES(CATHERINE_GAME_HISTORY_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?) ";
+			PreparedStatement prest = conn.prepareStatement(sql);
+			prest.setLong(1, ally1);
+			prest.setLong(2, ally2);
+			prest.setLong(3, enemy1);
+			prest.setLong(4, enemy2);
+			prest.setLong(5, enemy3);
+			prest.setString(6, isVictory);
+			prest.executeUpdate();
+			prest.close();
+			conn.close();
+		}
+        catch(Exception e)
+        {
+                System.out.println("Exception while adding game history: " + e.getMessage());
+        }
+	}
+
+	@Override
+	public List<GameHistoryStats> getCatherineGameHistoryStats() {
+		  Connection conn = null;
+		  List<GameHistoryStats> gameHistoryStats = new ArrayList<GameHistoryStats>();
+		  try {
+			  DBConnection db = new DBConnection();
+			  conn = db.getConnection();
+
+			  String sql = "SELECT is_victory, ally1_hero_id, ally2_hero_id, count(*) frequency "
+				  + "FROM CATHERINE_GAME_HISTORY "
+				  + "GROUP BY is_victory, ally1_hero_id, ally2_hero_id "
+				  + "ORDER BY is_victory desc, frequency desc ";
+			  
+			  PreparedStatement prest = conn.prepareStatement(sql);
+			  ResultSet rs = prest.executeQuery();
+			  while (rs.next()){
+				  GameHistoryStats ghs = new GameHistoryStats();
+				  ghs.setVictory(rs.getString(1).equals("Y") ? true : false);
+				  ghs.setAlly1(rs.getLong(2));
+				  ghs.setAlly2(rs.getLong(3));
+				  ghs.setFrequency(rs.getLong(4));
+				  gameHistoryStats.add(ghs);
+			  }
+			  rs.close();
+			  prest.close();
+			  conn.close();
+		  } catch (Exception e) {
+			  e.printStackTrace();
+		  }
+		return gameHistoryStats;
+	}
 }

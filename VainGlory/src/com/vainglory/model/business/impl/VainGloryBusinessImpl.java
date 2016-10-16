@@ -53,4 +53,17 @@ public class VainGloryBusinessImpl implements VainGloryBusiness {
 		return vgd.getAdagioGameHistoryStats();
 	}
 
+	@Override
+	public void addCatherineGameHistory(String isVictory, long ally1, long ally2, long enemy1, long enemy2,
+			long enemy3) {
+		VainGloryDao vgd = new VainGloryDaoImpl();
+		vgd.addCatherineGameHistory(isVictory, ally1, ally2, enemy1, enemy2, enemy3);		
+	}
+
+	@Override
+	public List<GameHistoryStats> getCatherineGameHistoryStats() {
+		VainGloryDao vgd = new VainGloryDaoImpl();
+		return vgd.getCatherineGameHistoryStats();
+	}
+
 }
