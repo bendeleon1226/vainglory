@@ -14,7 +14,7 @@ List<Hero> heroesList = (List<Hero>)request.getAttribute("heroesList");
 <a href="/VainGlory">VainGlory Home</a>
 <br/>
 <br/>
-<form method="POST" action="AddViewCatherineGameHistory.do">
+<form method="POST" action="AddViewLanceGameHistory.do">
 <input type="radio" name="isVictory" value="Y" checked> Victory &nbsp;
 <input type="radio" name="isVictory" value="N"> Defeat <br/>
 <table>
