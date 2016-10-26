@@ -21,6 +21,11 @@
 	<servlet-class>com.vainglory.web.AddViewCatherineGameHistory</servlet-class>
 </servlet>
 
+<servlet>
+	<servlet-name>Add View Lance Game History</servlet-name>
+	<servlet-class>com.vainglory.web.AddViewLanceGameHistory</servlet-class>
+</servlet>
+
 <servlet-mapping>
 	<servlet-name>Add View Hero</servlet-name>
 	<url-pattern>/AddViewHero.do</url-pattern>
@@ -39,6 +44,11 @@
 <servlet-mapping>
 	<servlet-name>Add View Catherine Game History</servlet-name>
 	<url-pattern>/AddViewCatherineGameHistory.do</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>Add View Lance Game History</servlet-name>
+	<url-pattern>/AddViewLanceGameHistory.do</url-pattern>
 </servlet-mapping>
 
 <resource-ref>
