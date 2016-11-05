@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>View Ardan Enemy History</title>
+<title>View Lance Enemy History</title>
 </head>
 <body>
 <% 
@@ -14,7 +14,7 @@ String weak = (String)request.getAttribute("weak");
 <a href="/VainGlory">VainGlory Home</a>
 <br/>
 <br/>
-<h3><%= weak.equals("Y")?"Weak":"Strong" %> Enemy Combination against Ardan</h3>
+<h3><%= weak.equals("Y")?"Weak":"Strong" %> Enemy Combination against Lance</h3>
 <table border = "1">
 	<tr>
 		<th>Victory/Defeat</th>

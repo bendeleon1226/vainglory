@@ -20,6 +20,7 @@ public interface VainGloryBusiness {
 	public List<GameHistoryStats> getCatherineGameHistoryStats();
 	public void addLanceGameHistory(String isVictory, long ally1, long ally2, long enemy1, long enemy2, long enemy3);
 	public List<GameHistoryStats> getLanceGameHistoryStats();
+	public List<GameHistoryStats> getLanceEnemyCombination(String decision);
 	public void addLyraGameHistory(String isVictory, long ally1, long ally2, long enemy1, long enemy2, long enemy3);
 	public List<GameHistoryStats> getLyraGameHistoryStats();
 }

@@ -101,4 +101,14 @@ public class VainGloryBusinessImpl implements VainGloryBusiness {
 		}
 	}
 
+	@Override
+	public List<GameHistoryStats> getLanceEnemyCombination(String decision) {
+		VainGloryDao vgd = new VainGloryDaoImpl();
+		if(decision!=null && decision.equals("Y")){
+			return vgd.getLanceEnemyCombination(true); // weak enemy combination
+		} else {
+			return vgd.getLanceEnemyCombination(false);// strong enemy combination
+		}
+	}
+
 }

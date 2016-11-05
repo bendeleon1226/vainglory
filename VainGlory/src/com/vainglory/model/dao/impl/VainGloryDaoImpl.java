@@ -418,4 +418,39 @@ public class VainGloryDaoImpl implements VainGloryDao {
 		  }
 		return gameHistoryStats;
 	}
+
+	@Override
+	public List<GameHistoryStats> getLanceEnemyCombination(boolean isWeak) {
+		  Connection conn = null;
+		  List<GameHistoryStats> gameHistoryStats = new ArrayList<GameHistoryStats>();
+		  try {
+			  DBConnection db = new DBConnection();
+			  conn = db.getConnection();
+
+			  String sql = "SELECT is_victory, enemy1_hero_id, enemy2_hero_id, enemy3_hero_id, count(*) frequency "
+				  + "FROM LANCE_GAME_HISTORY "
+				  + "where is_victory = ? "
+				  + "GROUP BY is_victory, enemy1_hero_id, enemy2_hero_id, enemy3_hero_id "
+				  + "ORDER BY frequency desc ";
+			  
+			  PreparedStatement prest = conn.prepareStatement(sql);
+			  prest.setString(1, isWeak?"Y":"N");			  
+			  ResultSet rs = prest.executeQuery();
+			  while (rs.next()){
+				  GameHistoryStats ghs = new GameHistoryStats();
+				  ghs.setVictory(rs.getString(1).equals("Y") ? true : false);
+				  ghs.setEnemy1(rs.getLong(2));
+				  ghs.setEnemy2(rs.getLong(3));
+				  ghs.setEnemy3(rs.getLong(4));
+				  ghs.setFrequency(rs.getLong(5));
+				  gameHistoryStats.add(ghs);
+			  }
+			  rs.close();
+			  prest.close();
+			  conn.close();
+		  } catch (Exception e) {
+			  e.printStackTrace();
+		  }
+		return gameHistoryStats;
+	}
 }
