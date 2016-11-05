@@ -91,4 +91,14 @@ public class VainGloryBusinessImpl implements VainGloryBusiness {
 		return vgd.getLyraGameHistoryStats();
 	}
 
+	@Override
+	public List<GameHistoryStats> getArdanEnemyCombination(String decision) {
+		VainGloryDao vgd = new VainGloryDaoImpl();
+		if(decision!=null && decision.equals("Y")){
+			return vgd.getArdanEnemyCombination(true); // weak enemy combination
+		} else {
+			return vgd.getArdanEnemyCombination(false);// strong enemy combination
+		}
+	}
+
 }
