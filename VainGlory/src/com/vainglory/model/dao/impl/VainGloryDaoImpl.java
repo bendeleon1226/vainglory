@@ -463,7 +463,7 @@ public class VainGloryDaoImpl implements VainGloryDao {
 			conn = db.getConnection();
 			
 			String sql = "INSERT INTO GAMES(GAME_ID, GAME_DATE) "
-					+ "VALUES(GAME_SEQ.NEXTVAL, SYSDATE);";
+					+ "VALUES(GAME_SEQ.NEXTVAL, SYSDATE)";
 			PreparedStatement prest = conn.prepareStatement(sql);
 			prest.executeUpdate();
 

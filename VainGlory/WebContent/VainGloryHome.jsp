@@ -7,6 +7,7 @@
 <h3>Welcome to Vain Glory Statistics!</h3>
 <br>
 <a href="AddViewHero.do">Add/View Hero</a><br/>
+<a href="AddViewGameHistoryAll.do">Add/View Game History</a><br/>
 <a href="AddViewGameHistory.do">Add/View Ardan Game History</a><br/>
 <a href="ViewArdanEnemyCombination.do?weak=Y">View Weak Enemy Combination Against Ardan</a><br/>
 <a href="ViewArdanEnemyCombination.do">View Strong Enemy Combination Against Ardan</a><br/>
