@@ -6,6 +6,8 @@ public class Hero {
 	private long id;
 	private String heroName;
 	private Date createDate;
+	private boolean isVictory;
+
 	public long getId() {
 		return id;
 	}
@@ -23,5 +25,11 @@ public class Hero {
 	}
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+	public boolean isVictory() {
+		return isVictory;
+	}
+	public void setVictory(boolean isVictory) {
+		this.isVictory = isVictory;
 	}
 }

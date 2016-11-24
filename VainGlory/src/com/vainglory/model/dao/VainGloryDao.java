@@ -22,4 +22,6 @@ public interface VainGloryDao {
 	public List<GameHistoryStats> getLanceEnemyCombination(boolean isWeak);
 	public void addLyraGameHistory(String isVictory, long ally1, long ally2, long enemy1, long enemy2, long enemy3);
 	public List<GameHistoryStats> getLyraGameHistoryStats();
+	public void addGameHistoryAll(long hero1, long hero2, long hero3, long hero4, long hero5, long hero6);
+	public List<Hero> getLatestGameHistory();
 }

@@ -111,4 +111,16 @@ public class VainGloryBusinessImpl implements VainGloryBusiness {
 		}
 	}
 
+	@Override
+	public void addGameHistoryAll(long hero1, long hero2, long hero3, long hero4, long hero5, long hero6) {
+		VainGloryDao vgd = new VainGloryDaoImpl();
+		vgd.addGameHistoryAll(hero1, hero2, hero3, hero4, hero5, hero6);		
+	}
+
+	@Override
+	public List<Hero> getLatestGameHistory() {
+		VainGloryDao vgd = new VainGloryDaoImpl();
+		return vgd.getLatestGameHistory();
+	}
+
 }

@@ -41,6 +41,11 @@
 	<servlet-class>com.vainglory.web.ViewLanceEnemyCombination</servlet-class>
 </servlet>
 
+<servlet>
+	<servlet-name>Add View Game History All</servlet-name>
+	<servlet-class>com.vainglory.web.AddViewGameHistoryAll</servlet-class>
+</servlet>
+
 <servlet-mapping>
 	<servlet-name>Add View Hero</servlet-name>
 	<url-pattern>/AddViewHero.do</url-pattern>
@@ -79,6 +84,11 @@
 <servlet-mapping>
 	<servlet-name>View Lance Enemy Combination</servlet-name>
 	<url-pattern>/ViewLanceEnemyCombination.do</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>Add View Game History All</servlet-name>
+	<url-pattern>/AddViewGameHistoryAll.do</url-pattern>
 </servlet-mapping>
 
 <resource-ref>

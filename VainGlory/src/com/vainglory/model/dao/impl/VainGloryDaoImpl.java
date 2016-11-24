@@ -453,4 +453,99 @@ public class VainGloryDaoImpl implements VainGloryDao {
 		  }
 		return gameHistoryStats;
 	}
+
+	@Override
+	public void addGameHistoryAll(long hero1, long hero2, long hero3, long hero4, long hero5, long hero6) {
+		Connection conn = null;
+		try
+        {
+			DBConnection db = new DBConnection();
+			conn = db.getConnection();
+			
+			String sql = "INSERT INTO GAMES(GAME_ID, GAME_DATE) "
+					+ "VALUES(GAME_SEQ.NEXTVAL, SYSDATE);";
+			PreparedStatement prest = conn.prepareStatement(sql);
+			prest.executeUpdate();
+
+			String sql2 = "INSERT INTO GAME_HISTORY(GAME_HISTORY_ID, GAME_ID, HERO_ID, IS_VICTORY) "
+					+ "VALUES(GAME_HISTORY_SEQ.NEXTVAL, GAME_SEQ.CURRVAL, ?, ?)";
+			PreparedStatement prest2 = conn.prepareStatement(sql2);
+			prest2.setLong(1, hero1);
+			prest2.setString(2, "Y");
+			prest2.executeUpdate();
+
+			String sql3 = "INSERT INTO GAME_HISTORY(GAME_HISTORY_ID, GAME_ID, HERO_ID, IS_VICTORY) "
+					+ "VALUES(GAME_HISTORY_SEQ.NEXTVAL, GAME_SEQ.CURRVAL, ?, ?)";
+			PreparedStatement prest3 = conn.prepareStatement(sql3);
+			prest3.setLong(1, hero2);
+			prest3.setString(2, "Y");
+			prest3.executeUpdate();
+
+			String sql4 = "INSERT INTO GAME_HISTORY(GAME_HISTORY_ID, GAME_ID, HERO_ID, IS_VICTORY) "
+					+ "VALUES(GAME_HISTORY_SEQ.NEXTVAL, GAME_SEQ.CURRVAL, ?, ?)";
+			PreparedStatement prest4 = conn.prepareStatement(sql4);
+			prest4.setLong(1, hero3);
+			prest4.setString(2, "Y");
+			prest4.executeUpdate();
+
+			String sql5 = "INSERT INTO GAME_HISTORY(GAME_HISTORY_ID, GAME_ID, HERO_ID, IS_VICTORY) "
+					+ "VALUES(GAME_HISTORY_SEQ.NEXTVAL, GAME_SEQ.CURRVAL, ?, ?)";
+			PreparedStatement prest5 = conn.prepareStatement(sql5);
+			prest5.setLong(1, hero4);
+			prest5.setString(2, "N");
+			prest5.executeUpdate();
+
+			String sql6 = "INSERT INTO GAME_HISTORY(GAME_HISTORY_ID, GAME_ID, HERO_ID, IS_VICTORY) "
+					+ "VALUES(GAME_HISTORY_SEQ.NEXTVAL, GAME_SEQ.CURRVAL, ?, ?)";
+			PreparedStatement prest6 = conn.prepareStatement(sql6);
+			prest6.setLong(1, hero5);
+			prest6.setString(2, "N");
+			prest6.executeUpdate();
+
+			String sql7 = "INSERT INTO GAME_HISTORY(GAME_HISTORY_ID, GAME_ID, HERO_ID, IS_VICTORY) "
+					+ "VALUES(GAME_HISTORY_SEQ.NEXTVAL, GAME_SEQ.CURRVAL, ?, ?)";
+			PreparedStatement prest7 = conn.prepareStatement(sql7);
+			prest7.setLong(1, hero6);
+			prest7.setString(2, "N");
+			prest7.executeUpdate();
+			prest.close();
+			conn.close();
+		}
+        catch(Exception e)
+        {
+                System.out.println("Exception while adding game history: " + e.getMessage());
+        }
+	}
+
+	@Override
+	public List<Hero> getLatestGameHistory() {
+		  Connection conn = null;
+		  List<Hero> heroes = new ArrayList<Hero>();
+		  try {
+			  DBConnection db = new DBConnection();
+			  conn = db.getConnection();
+
+			  String sql = "select h.HERO_NAME, gh.is_victory, gh.created_date "
+				  + "from game_history gh, hero h "
+				  + "where gh.hero_id = h.hero_id "
+				  + "and gh.game_id = (select max(game_id) from game_history) "
+				  + "order by gh.is_victory desc, h.HERO_NAME ";
+			  
+			  PreparedStatement prest = conn.prepareStatement(sql);
+			  ResultSet rs = prest.executeQuery();
+			  while (rs.next()){
+				  Hero hero = new Hero();
+				  hero.setHeroName(rs.getString(1));
+				  hero.setVictory(rs.getString(2).equals("Y") ? true : false);
+				  hero.setCreateDate(rs.getDate(3));
+				  heroes.add(hero);
+			  }
+			  rs.close();
+			  prest.close();
+			  conn.close();
+		  } catch (Exception e) {
+			  e.printStackTrace();
+		  }
+		return heroes;
+	}
 }
