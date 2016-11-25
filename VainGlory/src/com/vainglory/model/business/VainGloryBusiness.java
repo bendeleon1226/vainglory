@@ -25,4 +25,6 @@ public interface VainGloryBusiness {
 	public List<GameHistoryStats> getLyraGameHistoryStats();
 	public void addGameHistoryAll(long hero1, long hero2, long hero3, long hero4, long hero5, long hero6);
 	public List<Hero> getLatestGameHistory();
+	public List<Hero> getWinningCombination(long ally1, long ally2);
+	public List<Hero> getLosingCombination(long ally1, long ally2);
 }

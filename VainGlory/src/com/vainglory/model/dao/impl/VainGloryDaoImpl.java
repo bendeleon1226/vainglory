@@ -548,4 +548,116 @@ public class VainGloryDaoImpl implements VainGloryDao {
 		  }
 		return heroes;
 	}
+
+	@Override
+	public List<Hero> getWinningCombination(long ally1, long ally2) {
+		  Connection conn = null;
+		  List<Hero> heroes = new ArrayList<Hero>();
+		  try {
+			  DBConnection db = new DBConnection();
+			  conn = db.getConnection();
+
+			  String sql = "select hero_name, count(*) "
+				  + "from "
+				  + " (select h.HERO_NAME "
+				  + "  from  game_history gh, "
+				  + "        hero h, "
+				  + "        (select game_id "
+				  + "         from game_history "
+				  + "         where hero_id = ? "
+				  + "         and is_victory = ?) given1, "
+				  + "        (select game_id "
+				  + "         from game_history "
+				  + "         where hero_id = ? "
+				  + "         and is_victory = ?) given2 "
+				  + "where gh.hero_id = h.hero_id "
+				  + "and gh.game_id = given1.game_id "
+				  + "and given1.game_id = given2.game_id "
+				  + "and gh.is_victory = ? "
+				  + "and gh.hero_id != ? "
+				  + "and gh.hero_id != ? "
+				  + ") "
+				  + "group by hero_name "
+				  + "ORDER BY 2 desc, 1 ";
+			  
+			  PreparedStatement prest = conn.prepareStatement(sql);
+			  prest.setLong(1, ally1);
+			  prest.setString(2, "Y");
+			  prest.setLong(3, ally2);
+			  prest.setString(4, "Y");
+			  prest.setString(5, "Y");
+			  prest.setLong(6, ally1);
+			  prest.setLong(7, ally2);
+			  
+			  ResultSet rs = prest.executeQuery();
+			  while (rs.next()){
+				  Hero hero = new Hero();
+				  hero.setHeroName(rs.getString(1));
+				  hero.setWonCount(rs.getInt(2));
+				  heroes.add(hero);
+			  }
+			  rs.close();
+			  prest.close();
+			  conn.close();
+		  } catch (Exception e) {
+			  e.printStackTrace();
+		  }
+		return heroes;
+	}
+
+	@Override
+	public List<Hero> getLosingCombination(long ally1, long ally2) {
+		  Connection conn = null;
+		  List<Hero> heroes = new ArrayList<Hero>();
+		  try {
+			  DBConnection db = new DBConnection();
+			  conn = db.getConnection();
+
+			  String sql = "select hero_name, count(*) "
+				  + "from "
+				  + " (select h.HERO_NAME "
+				  + "  from  game_history gh, "
+				  + "        hero h, "
+				  + "        (select game_id "
+				  + "         from game_history "
+				  + "         where hero_id = ? "
+				  + "         and is_victory = ?) given1, "
+				  + "        (select game_id "
+				  + "         from game_history "
+				  + "         where hero_id = ? "
+				  + "         and is_victory = ?) given2 "
+				  + "where gh.hero_id = h.hero_id "
+				  + "and gh.game_id = given1.game_id "
+				  + "and given1.game_id = given2.game_id "
+				  + "and gh.is_victory = ? "
+				  + "and gh.hero_id != ? "
+				  + "and gh.hero_id != ? "
+				  + ") "
+				  + "group by hero_name "
+				  + "ORDER BY 2 desc, 1 ";
+			  
+			  PreparedStatement prest = conn.prepareStatement(sql);
+			  prest.setLong(1, ally1);
+			  prest.setString(2, "N");
+			  prest.setLong(3, ally2);
+			  prest.setString(4, "N");
+			  prest.setString(5, "N");
+			  prest.setLong(6, ally1);
+			  prest.setLong(7, ally2);
+			  
+			  ResultSet rs = prest.executeQuery();
+			  while (rs.next()){
+				  Hero hero = new Hero();
+				  hero.setHeroName(rs.getString(1));
+				  hero.setLostCount(rs.getInt(2));
+				  heroes.add(hero);
+			  }
+			  rs.close();
+			  prest.close();
+			  conn.close();
+		  } catch (Exception e) {
+			  e.printStackTrace();
+		  }
+		return heroes;
+	}
 }

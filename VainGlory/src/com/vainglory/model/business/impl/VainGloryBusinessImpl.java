@@ -123,4 +123,16 @@ public class VainGloryBusinessImpl implements VainGloryBusiness {
 		return vgd.getLatestGameHistory();
 	}
 
+	@Override
+	public List<Hero> getWinningCombination(long ally1, long ally2) {
+		VainGloryDao vgd = new VainGloryDaoImpl();
+		return vgd.getWinningCombination(ally1, ally2);
+	}
+
+	@Override
+	public List<Hero> getLosingCombination(long ally1, long ally2) {
+		VainGloryDao vgd = new VainGloryDaoImpl();
+		return vgd.getLosingCombination(ally1, ally2);
+	}
+
 }

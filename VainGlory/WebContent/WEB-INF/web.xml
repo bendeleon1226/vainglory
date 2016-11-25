@@ -46,6 +46,11 @@
 	<servlet-class>com.vainglory.web.AddViewGameHistoryAll</servlet-class>
 </servlet>
 
+<servlet>
+	<servlet-name>Suggest Heroes</servlet-name>
+	<servlet-class>com.vainglory.web.SuggestHeroes</servlet-class>
+</servlet>
+
 <servlet-mapping>
 	<servlet-name>Add View Hero</servlet-name>
 	<url-pattern>/AddViewHero.do</url-pattern>
@@ -89,6 +94,11 @@
 <servlet-mapping>
 	<servlet-name>Add View Game History All</servlet-name>
 	<url-pattern>/AddViewGameHistoryAll.do</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>Suggest Heroes</servlet-name>
+	<url-pattern>/SuggestHeroes.do</url-pattern>
 </servlet-mapping>
 
 <resource-ref>

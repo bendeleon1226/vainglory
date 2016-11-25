@@ -7,6 +7,8 @@ public class Hero {
 	private String heroName;
 	private Date createDate;
 	private boolean isVictory;
+	private int wonCount;
+	private int lostCount;
 
 	public long getId() {
 		return id;
@@ -31,5 +33,17 @@ public class Hero {
 	}
 	public void setVictory(boolean isVictory) {
 		this.isVictory = isVictory;
+	}
+	public int getWonCount() {
+		return wonCount;
+	}
+	public void setWonCount(int wonCount) {
+		this.wonCount = wonCount;
+	}
+	public int getLostCount() {
+		return lostCount;
+	}
+	public void setLostCount(int lostCount) {
+		this.lostCount = lostCount;
 	}
 }
